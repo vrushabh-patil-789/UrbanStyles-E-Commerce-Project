@@ -4,8 +4,9 @@ import ProductCard from "./ProductCard";
 
 function Products() {
   const [index, setIndex] = useState(0);
-  const visibleCards = 4; // ONLY 4 visible on screen
-  const cardWidth = 260;  // width + gap (IMPORTANT)
+
+  const visibleCards = 4;
+  const cardWidth = 260;
 
   const nextSlide = () => {
     if (index < products.length - visibleCards) {
@@ -20,32 +21,55 @@ function Products() {
   };
 
   return (
-    <section className="products">
-      <h2>Featured Products</h2>
+    <section className="px-6 md:px-20 py-12">
+      <h2 className="text-2xl md:text-3xl font-semibold text-center mb-8">
+        Featured Products
+      </h2>
 
-      <div className="products-slider">
-        <button className="slider-btn left" onClick={prevSlide}>
+      {/* MOBILE VERSION */}
+      <div className="md:hidden overflow-x-auto flex gap-4 snap-x snap-mandatory pb-4">
+        {products.map((product) => (
+          <div
+            key={product.id}
+            className="min-w-[75%] snap-start"
+          >
+            <ProductCard product={product} />
+          </div>
+        ))}
+      </div>
+
+      {/* DESKTOP SLIDER */}
+      <div className="hidden md:flex relative items-center">
+
+        <button
+          onClick={prevSlide}
+          className="absolute -left-12 z-10 bg-black text-white w-10 h-10 flex items-center justify-center text-2xl"
+        >
           ‹
         </button>
 
-        <div className="products-window">
+        <div className="overflow-hidden w-full max-w-[1040px] mx-auto">
           <div
-            className="products-track"
+            className="flex gap-5 transition-transform duration-300"
             style={{
               transform: `translateX(-${index * cardWidth}px)`,
             }}
           >
             {products.map((product) => (
-              <div className="product-slide" key={product.id}>
+              <div key={product.id} className="min-w-[240px]">
                 <ProductCard product={product} />
               </div>
             ))}
           </div>
         </div>
 
-        <button className="slider-btn right" onClick={nextSlide}>
+        <button
+          onClick={nextSlide}
+          className="absolute -right-12 z-10 bg-black text-white w-10 h-10 flex items-center justify-center text-2xl"
+        >
           ›
         </button>
+
       </div>
     </section>
   );

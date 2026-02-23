@@ -2,10 +2,10 @@ import { useState } from "react";
 import products from "../data/products";
 import ProductCard from "./ProductCard";
 
-
 function FeaturedProducts() {
   const [index, setIndex] = useState(0);
-  const visibleCount = 4; // how many cards visible
+  const visibleCount = 4;
+  const cardWidth = 260;
 
   const nextSlide = () => {
     if (index < products.length - visibleCount) {
@@ -20,35 +20,53 @@ function FeaturedProducts() {
   };
 
   return (
-    <section className="featured">
-      <h2>Featured Products</h2>
+    <section className="px-6 md:px-20 py-14">
 
-      <div className="slider-container">
-        <button className="slider-btn left" onClick={prevSlide}>
+      <h2 className="text-2xl md:text-3xl font-semibold text-center mb-10">
+        Featured Products
+      </h2>
+
+      {/* MOBILE - Horizontal Scroll */}
+      <div className="md:hidden flex overflow-x-auto gap-4 snap-x snap-mandatory pb-4">
+        {products.map((item) => (
+          <div key={item.id} className="min-w-[75%] snap-start">
+            <ProductCard product={item} />
+          </div>
+        ))}
+      </div>
+
+      {/* DESKTOP - Slider */}
+      <div className="hidden md:flex relative items-center">
+
+        <button
+          onClick={prevSlide}
+          className="absolute -left-12 z-10 bg-black text-white w-10 h-10 flex items-center justify-center text-2xl"
+        >
           ‹
         </button>
 
-        <div className="slider-window">
+        <div className="overflow-hidden w-full max-w-[1040px] mx-auto">
           <div
-            className="slider-track"
-            style={{ transform: `translateX(-${index * 260}px)` }}
+            className="flex gap-5 transition-transform duration-300"
+            style={{ transform: `translateX(-${index * cardWidth}px)` }}
           >
             {products.map((item) => (
-              <div key={item.id} className="featured-item">
+              <div key={item.id} className="min-w-[240px]">
                 <ProductCard product={item} />
-                <img src={item.image} alt={item.name} />
-                <h4>{item.name}</h4>
-                <p>₹{item.price}</p>
-                <button>Add to Cart</button>
               </div>
             ))}
           </div>
         </div>
 
-        <button className="slider-btn right" onClick={nextSlide}>
+        <button
+          onClick={nextSlide}
+          className="absolute -right-12 z-10 bg-black text-white w-10 h-10 flex items-center justify-center text-2xl"
+        >
           ›
         </button>
+
       </div>
+
     </section>
   );
 }
