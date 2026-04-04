@@ -19,7 +19,7 @@ function Navbar() {
       {/* Top Row */}
       <div className="flex items-center justify-between w-full md:w-auto">
         <Link to="/" >
-        <h2 className="text-2xl font-bold">UrbanStyle</h2>
+        <h2 className="text-2xl font-bold">UrbanStreet</h2>
         </Link>
 
         {/* Mobile Links */}
