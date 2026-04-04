@@ -21,7 +21,7 @@ function Cart() {
           <div className="text-center py-20">
             <p className="text-gray-500 text-lg mb-6">Your cart is empty.</p>
             <Link
-              to="/shop"
+              to="/"
               className="px-6 py-3 bg-black text-white rounded-md hover:bg-gray-800 transition"
             >
               Continue Shopping

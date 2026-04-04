@@ -8,7 +8,7 @@ function Navbar() {
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchTerm.trim() !== "") {
-      navigate(`/shop?search=${searchTerm}`);
+      navigate(`/men?search=${searchTerm}`);
       setSearchTerm("");
     }
   };
@@ -18,14 +18,15 @@ function Navbar() {
       
       {/* Top Row */}
       <div className="flex items-center justify-between w-full md:w-auto">
-        <Link to="/" >
-        <h2 className="text-2xl font-bold">UrbanStreet</h2>
+        <Link to="/">
+          <h2 className="text-2xl font-bold">UrbanStreet</h2>
         </Link>
 
         {/* Mobile Links */}
         <div className="flex gap-4 md:hidden text-sm">
           <Link to="/">Home</Link>
-          <Link to="/shop">Shop</Link>
+          <Link to="/men">Men</Link>
+          <Link to="/kids">Children</Link>
           <Link to="/cart">Cart</Link>
         </div>
       </div>
@@ -53,7 +54,8 @@ function Navbar() {
       {/* Desktop Links */}
       <ul className="hidden md:flex items-center gap-8 font-medium">
         <li><Link to="/" className="hover:text-blue-600">Home</Link></li>
-        <li><Link to="/shop" className="hover:text-blue-600">Shop</Link></li>
+        <li><Link to="/men" className="hover:text-blue-600">Men</Link></li>
+        <li><Link to="/kids" className="hover:text-blue-600">Children</Link></li>
         <li><Link to="/cart" className="hover:text-blue-600">Cart</Link></li>
       </ul>
     </nav>

@@ -18,24 +18,28 @@ const products = [
     name: "Slim Fit Jeans",
     price: 2599,
     image: "/images/featured-img3.jpg",
+    category:"men",
   },
   {
     id: 4,
     name: "Casual Jeans",
     price: 1199,
     image: "/images/featured-img4.jpg",
+    category:"men",
   },
   {
     id: 5,
     name: "Mens Formal Combo",
     price: 3499,
     image: "/images/featured-img5.jpg",
+    category:"men",
   },
   {
     id: 6,
     name: "Mens Formal Shirt",
     price: 799,
     image: "/images/featured-img6.jpg",
+    category:"men",
   },
 
 
@@ -48,7 +52,7 @@ const products = [
   },
  
   {
-  id: 9,
+  id: 8,
   name: "Kids Graphic Tee",
   price: 499,
   image: "/images/twokids.jpg",
