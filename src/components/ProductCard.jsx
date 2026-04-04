@@ -17,7 +17,7 @@ function ProductCard({ product }) {
 };
 
   return (
-    <div className="border border-gray-200 p-4 bg-white hover:shadow-lg transition duration-300 flex flex-col">
+    <div className="border border-gray-200 rounded-md p-4 bg-white hover:shadow-lg transition duration-300 flex flex-col dark:bg-[#1A1A1A] dark:border-white/10 ">
       
 
       <Link
@@ -39,11 +39,11 @@ function ProductCard({ product }) {
 
         </div>
 
-        <h4 className="text-sm font-medium mb-1 text-gray-800">
+        <h4 className="text-sm font-medium mb-1 text-gray-800 dark:text-white">
           {product.name}
         </h4>
 
-        <p className="font-semibold text-gray-900 mb-3">
+        <p className="font-semibold text-gray-900 mb-3 dark:text-white">
           ₹{product.price}
         </p>
       </Link>
@@ -51,7 +51,7 @@ function ProductCard({ product }) {
       
       <button 
       onClick={handleAddToCart}
-      className="mt-auto px-3 py-2 bg-black text-white text-sm hover:bg-gray-800 transition rounded-md">
+      className="mt-auto px-3 py-2 bg-pink-600 text-white text-sm hover:bg-pink-500 transition rounded-md">
         Add to Cart
       </button>
     </div>

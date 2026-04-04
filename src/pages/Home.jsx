@@ -6,17 +6,17 @@ import SaleBanner from "../components/SaleBanner";
 import Footer from "../components/Footer";
 
 
-function Home() {
+function Home({darkMode, setDarkMode}) {
   return (
-    <>
-      <Navbar />
+    <div className="dark:bg-[#0A0A0A]">
+      <Navbar darkMode={darkMode} setDarkMode={setDarkMode}/>
       <Hero />
       <Categories />
       <Products />
       
       <SaleBanner />
       <Footer />
-    </>
+    </div>
   );
 }
 

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { SunIcon, MoonIcon} from "@heroicons/react/24/solid";
 
-function Navbar() {
+function Navbar({darkMode, setDarkMode}) {
+  
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
@@ -13,8 +15,10 @@ function Navbar() {
     }
   };
 
+  
+
   return (
-    <nav className="flex flex-col md:flex-row md:items-center md:justify-between px-5 md:px-16 py-4 border-b border-gray-200 bg-white gap-3 md:gap-0">
+    <nav className="flex flex-col md:flex-row md:items-center md:justify-between px-5 md:px-16 py-4 border-b border-gray-200 bg-white gap-3 md:gap-0  dark:bg-[#0A0A0A] dark:text-white">
       
       {/* Top Row */}
       <div className="flex items-center justify-between w-full md:w-auto">
@@ -28,6 +32,11 @@ function Navbar() {
           <Link to="/men">Men</Link>
           <Link to="/kids">Children</Link>
           <Link to="/cart">Cart</Link>
+          <button>
+            {darkMode ? (
+            <SunIcon onClick={()=> setDarkMode(!darkMode)} className="h-6 w-6 cursor-pointer"></SunIcon>
+          ):(<MoonIcon onClick={()=> setDarkMode(prev => !prev)} className="h-5 w-5 cursor-pointer"></MoonIcon>)}
+          </button>
         </div>
       </div>
 
@@ -45,7 +54,7 @@ function Navbar() {
         />
         <button
           type="submit"
-          className="px-4 py-2 bg-black text-white rounded-md"
+          className="px-4 py-2 bg-green-400 text-white rounded-md"
         >
           Search
         </button>
@@ -57,6 +66,11 @@ function Navbar() {
         <li><Link to="/men" className="hover:text-blue-600">Men</Link></li>
         <li><Link to="/kids" className="hover:text-blue-600">Children</Link></li>
         <li><Link to="/cart" className="hover:text-blue-600">Cart</Link></li>
+        <li>
+          {darkMode ? (
+            <SunIcon onClick={()=> setDarkMode(!darkMode)} className="h-6 w-6 cursor-pointer"></SunIcon>
+          ):(<MoonIcon onClick={()=> setDarkMode(prev => !prev)} className="h-5 w-5 cursor-pointer"></MoonIcon>)}
+        </li>
       </ul>
     </nav>
   );

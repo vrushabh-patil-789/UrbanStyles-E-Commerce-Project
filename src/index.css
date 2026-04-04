@@ -2,3 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* index.css */
+#root {
+  @apply bg-white;
+}
+
+.dark #root {
+  background-color: #0A0A0A;
+}

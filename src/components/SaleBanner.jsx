@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 
 function SaleBanner() {
   return (
-    <section className="grid md:grid-cols-2 gap-6 px-6 md:px-20 py-14">
+    <div className="dark:bg-[#0A0A0A]">
+    <section className="grid md:grid-cols-2 gap-6 px-6 md:px-20 py-14 ">
 
       {/* MEN */}
       <div className="relative overflow-hidden rounded-lg h-[220px] md:h-[260px]">
@@ -30,7 +31,7 @@ function SaleBanner() {
       <div className="relative overflow-hidden rounded-lg h-[220px] md:h-[260px]">
         <img
           src="/images/twokids.jpg"
-          alt="Women Fashion Sale"
+          alt="Kids Fashion Sale"
           className="w-full h-full object-cover"
         />
 
@@ -49,6 +50,7 @@ function SaleBanner() {
       </div>
 
     </section>
+    </div>
   );
 }
 

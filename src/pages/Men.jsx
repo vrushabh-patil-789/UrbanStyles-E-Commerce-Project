@@ -3,21 +3,21 @@ import Footer from "../components/Footer";
 import ProductCard from "../components/ProductCard";
 import products from "../data/products";
 
-function Men() {
+function Men({darkMode, setDarkMode}) {
   const menProducts = products.filter(
     (product) => product.category === "men"
   );
 
   return (
     <>
-      <Navbar />
+      <Navbar darkMode={darkMode} setDarkMode={setDarkMode}/>
 
       <section className="px-6 md:px-20 py-14">
 
         <div className="grid md:grid-cols-[260px_1fr] gap-10">
 
           {/* FILTERS */}
-          <aside className="border border-gray-200 p-5 h-fit">
+          <aside className="border border-gray-200 p-5 h-fit dark:bg-[#1A1A1A] dark:text-white">
 
             <h3 className="text-lg font-semibold mb-6">
               Filters
@@ -62,7 +62,7 @@ function Men() {
                 Showing {menProducts.length} products
               </p>
 
-              <select className="border border-gray-300 px-3 py-2 text-sm">
+              <select className="border border-gray-300 px-3 py-2 text-sm dark:bg-[#1A1A1A] dark:text-white">
                 <option>Sort by: Featured</option>
                 <option>Price: Low to High</option>
                 <option>Price: High to Low</option>

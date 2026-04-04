@@ -21,7 +21,7 @@ function Products() {
   };
 
   return (
-    <section className="px-6 md:px-20 py-12">
+    <section className="px-6 md:px-20 py-12 dark:text-white">
       <h2 className="text-2xl md:text-3xl font-semibold text-center mb-8">
         Featured Products
       </h2>
@@ -43,7 +43,7 @@ function Products() {
 
         <button
           onClick={prevSlide}
-          className="absolute -left-12 z-10 bg-black text-white w-10 h-10 flex items-center justify-center text-2xl"
+          className="absolute -left-12 z-10 bg-purple-500 text-white w-10 h-10 flex items-center justify-center text-2xl  dark:text-black"
         >
           ‹
         </button>
@@ -65,7 +65,7 @@ function Products() {
 
         <button
           onClick={nextSlide}
-          className="absolute -right-12 z-10 bg-black text-white w-10 h-10 flex items-center justify-center text-2xl"
+          className="absolute -right-12 z-10 bg-purple-500 text-white w-10 h-10 flex items-center justify-center text-2xl  dark:text-black"
         >
           ›
         </button>
