@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import { useState, useEffect } from "react";
 import Cart from "./pages/Cart";
 import Kids from "./pages/Kids"
-
+import SearchResults from "./pages/SearchResults";
 import Men from "./pages/Men"
 import ProductDetails from "./pages/ProductDetails";
 import "./styles/main.css";
@@ -37,7 +37,7 @@ function App() {
         <Route path="/cart" element={<Cart darkMode={darkMode} setDarkMode={setDarkMode}/>} />
         <Route path="/kids" element={<Kids darkMode={darkMode} setDarkMode={setDarkMode}/>} />
         <Route path="/men" element={<Men darkMode={darkMode} setDarkMode={setDarkMode}/>} />
-        
+        <Route path="/search" element={<SearchResults darkMode={darkMode} setDarkMode={setDarkMode}/>} />
         <Route path="/product/:id" element={<ProductDetails darkMode={darkMode} setDarkMode={setDarkMode}/>} />
 
 

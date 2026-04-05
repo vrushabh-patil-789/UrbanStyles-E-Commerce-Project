@@ -5,14 +5,14 @@ function Categories() {
     <section className="grid md:grid-cols-[1.2fr_1fr] gap-6 px-6 md:px-20 py-12">
 
       {/* LEFT BIG CARD - Men's */}
-      <div className="relative overflow-hidden rounded-lg h-[300px] md:h-[420px]">
+      <div className="relative overflow-hidden rounded-lg h-[300px] md:h-[420px] cursor-pointer brightness-90 hover:brightness-95 transition duration-300">
         <img
-          src="/images/mens.jpg"
+          src="/images/men-categories.jpg"
           alt="Men Style"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover "
         />
 
-        <div className="absolute inset-0 p-6 flex flex-col justify-center bg-black/20">
+        <div className="absolute inset-0 p-6 flex flex-col justify-center ">
           <span className="text-blue-600 font-semibold mb-2">
             Hot Deal
           </span>
@@ -30,7 +30,7 @@ function Categories() {
       </div>
 
       {/* RIGHT SIDE */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 cursor-pointer brightness-90 hover:brightness-95 transition duration-300">
 
         {/* Kids - Wide */}
         <div className="relative overflow-hidden rounded-lg h-[200px] md:col-span-2">
@@ -40,7 +40,7 @@ function Categories() {
             className="w-full h-full object-cover"
           />
 
-          <div className="absolute inset-0 p-5 flex flex-col justify-center bg-black/20 text-white">
+          <div className="absolute inset-0 p-5 flex flex-col justify-center  text-white">
             <span className="bg-blue-600 text-xs px-2 py-1 w-fit mb-2">
               25% OFF
             </span>
@@ -57,14 +57,14 @@ function Categories() {
         </div>
 
         {/* Jackets */}
-        <div className="relative overflow-hidden rounded-lg h-[180px] md:col-span-2">
+        <div className="relative overflow-hidden rounded-lg h-[180px] md:col-span-2 cursor-pointer brightness-90 hover:brightness-95 transition duration-300">
           <img
             src="/images/winter.jpg"
             alt="Jackets"
             className="w-full h-full object-cover"
           />
 
-          <div className="absolute inset-0 p-5 flex flex-col justify-center bg-black/20 text-white">
+          <div className="absolute inset-0 p-5 flex flex-col justify-center  text-white">
             <span className="bg-blue-600 text-xs px-2 py-1 w-fit mb-2">
               45% OFF
             </span>

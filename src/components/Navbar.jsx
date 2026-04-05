@@ -10,7 +10,7 @@ function Navbar({darkMode, setDarkMode}) {
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchTerm.trim() !== "") {
-      navigate(`/men?search=${searchTerm}`);
+      navigate(`/search?q=${searchTerm}`);
       setSearchTerm("");
     }
   };
@@ -50,11 +50,11 @@ function Navbar({darkMode, setDarkMode}) {
           placeholder="Search products..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
         />
         <button
           type="submit"
-          className="px-4 py-2 bg-green-400 text-white rounded-md"
+          className="px-4 py-2 bg-green-400 text-white rounded-md "
         >
           Search
         </button>
