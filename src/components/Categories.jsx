@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+import useScrollReveal from "../hooks/ScrollReveal";
 
 function Categories() {
+
+  const [ref,isVisible] = useScrollReveal();
+
   return (
-    <section className="grid md:grid-cols-[1.2fr_1fr] gap-6 px-6 md:px-20 py-12">
+    <section ref={ref} className={`grid md:grid-cols-[1.2fr_1fr] gap-6 px-6 md:px-20 py-12 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0":"opacity-0 translate-y-10"}`}>
 
       {/* LEFT BIG CARD - Men's */}
       <div className="relative overflow-hidden rounded-lg h-[300px] md:h-[420px] cursor-pointer brightness-90 hover:brightness-95 transition duration-300">

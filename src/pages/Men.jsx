@@ -2,17 +2,20 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ProductCard from "../components/ProductCard";
 import products from "../data/products";
+import useScrollReveal from "../hooks/ScrollReveal";
 
 function Men({darkMode, setDarkMode}) {
   const menProducts = products.filter(
     (product) => product.category === "men"
   );
 
+  const [ref,isVisible] = useScrollReveal();
+
   return (
     <>
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode}/>
 
-      <section className="px-6 md:px-20 py-14">
+      <section ref={ref} className={`px-6 md:px-20 py-14 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0":"opacity-0 translate-y-10"}`}>
 
         <div className="grid md:grid-cols-[260px_1fr] gap-10">
 

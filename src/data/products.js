@@ -1,4 +1,5 @@
 const products = [
+  // Mens Products
   {
     id: 1,
     name: "Mens Fancy Shirt",
@@ -8,7 +9,7 @@ const products = [
   },
   {
     id: 2,
-    name: "Polo T-Shirts",
+    name: "Polo T-Shirt Purple",
     price: 2999,
     image: "/images/featured-img2.jpg",
     category: "men"
@@ -36,7 +37,7 @@ const products = [
   },
   {
     id: 6,
-    name: "Mens Formal Shirt",
+    name: "Mens Formal Shirt White",
     price: 799,
     image: "/images/featured-img6.jpg",
     category:"men",
@@ -95,11 +96,88 @@ const products = [
     category:"men",
   },
   {
-    id:14,
-    name:"Mens Polo Tshirt",
-    price:399,
-    image:"/images/mens-polo-Tshirt.jpg",
+    id:15,
+    name:"Mens Shirt Plain",
+    price:299,
+    image:"/images/mens-shirt-plain.jpg",
     category:"men",
+  },
+  {
+    id:16,
+    name:"Mens Formal Shirt Gray",
+    price:499,
+    image:"/images/mens-formalshirt-gray.jpg",
+    category:"men",
+  },
+  {
+    id:17,
+    name:"Mens Fancy Shirt Stripes",
+    price:499,
+    image:"/images/mens-fancyshirt-stripes.jpg",
+    category:"men",
+  },
+  {
+    id:18,
+    name:"Mens Fancy Shirt Half",
+    price:399,
+    image:"/images/mens-fancyshirt-half.jpg",
+    category:"men",
+  },
+
+  //Kids Products
+  {
+    id:19,
+    name:"Kids Fancy Tshirt Yellow",
+    price:399,
+    image:"/images/kids-tshirt-yellow.jpg",
+    category:"kids",
+  },
+
+  {
+    id:20,
+    name:"Kids Fancy Tshirt Cream",
+    price:399,
+    image:"/images/kids-tshirt-cream.jpg",
+    category:"kids",
+  },
+
+  {
+    id:21,
+    name:"Kids Tshirt Black",
+    price:399,
+    image:"/images/kids-tshirt-black.jpg",
+    category:"kids",
+  },
+
+  {
+    id:22,
+    name:"Kids Combo Tshirt+Shorts",
+    price:399,
+    image:"/images/kids-combo-tshirt+shorts.jpg",
+    category:"kids",
+  },
+  {
+    id:23,
+    name:"Kids Combo Tshirt+Shorts Green",
+    price:399,
+    image:"/images/kids-combo-tshirt+shorts-green.jpg",
+    category:"kids",
+  },
+
+  {
+    id:24,
+    name:"Kids Jeans Blue",
+    price:399,
+    image:"/images/kids-jeans-blue.jpg",
+    category:"kids",
+  },
+
+  {
+    id:25,
+    name:"Kids Jeans OverSized",
+    price:399,
+    image:"/images/kids-jeans-oversized.jpg",
+    category:"kids",
   },
 
 ];

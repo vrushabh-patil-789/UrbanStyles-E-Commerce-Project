@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+import useScrollReveal from "../hooks/ScrollReveal";
+
 
 function Hero() {
+  const [ref, isVisible] = useScrollReveal()
   return (
-    <section className="relative w-full h-[420px] md:h-[650px] overflow-hidden">
+    
+    <section ref={ref} className={`relative w-full h-[420px] md:h-[650px] overflow-hidden transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0":"opacity-0 translate-y-10"}`}>
 
       <img
         src="/images/hero-men.jpg"

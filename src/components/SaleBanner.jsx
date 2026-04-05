@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+import useScrollReveal from "../hooks/ScrollReveal";
 
 function SaleBanner() {
+
+  const [ref, isVisible] = useScrollReveal();
+
   return (
-    <div className="dark:bg-[#0A0A0A]">
+    <div ref={ref} className={`dark:bg-[#0A0A0A] transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0":"opacity-0 translate-y-10"}`}>
     <section className="grid md:grid-cols-2 gap-6 px-6 md:px-20 py-14 ">
 
       {/* MEN */}

@@ -1,8 +1,12 @@
 import { useState } from "react";
 import products from "../data/products";
 import ProductCard from "./ProductCard";
+import useScrollReveal from "../hooks/ScrollReveal";
 
 function Products() {
+
+  const [ref,isVisible] = useScrollReveal();
+
   const [index, setIndex] = useState(0);
 
   const visibleCards = 4;
@@ -21,7 +25,7 @@ function Products() {
   };
 
   return (
-    <section className="px-6 md:px-20 py-12 dark:text-white">
+    <section ref={ref} className={`px-6 md:px-20 py-12 dark:text-white transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0":"opacity-0 translate-y-10"}`}>
       <h2 className="text-2xl md:text-3xl font-semibold text-center mb-8">
         Featured Products
       </h2>
