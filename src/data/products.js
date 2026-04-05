@@ -41,18 +41,9 @@ const products = [
     image: "/images/featured-img6.jpg",
     category:"men",
   },
-
-
-  {
-  id: 7,
-  name: "Floral Summer Dress",
-  price: 1999,
-  image: "/images/Women.jpg",
-  category: "women"
-  },
  
   {
-  id: 8,
+  id: 7,
   name: "Kids Graphic Tee",
   price: 499,
   image: "/images/twokids.jpg",
