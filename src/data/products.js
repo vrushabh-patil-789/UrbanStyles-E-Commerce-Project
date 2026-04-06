@@ -158,7 +158,7 @@ const products = [
   },
   {
     id:23,
-    name:"Kids Combo Tshirt+Shorts Green",
+    name:"Kids Combo Tshirt+Shorts ",
     price:399,
     image:"/images/kids-combo-tshirt+shorts-green.jpg",
     category:"kids",
