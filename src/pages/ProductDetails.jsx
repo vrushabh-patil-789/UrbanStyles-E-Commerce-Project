@@ -2,8 +2,10 @@ import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import products from "../data/products";
+import useScrollReveal from "../hooks/ScrollReveal";
 
-function ProductDetails() {
+function ProductDetails({darkMode, setDarkMode}) {
+  const [ref, isVisible] = useScrollReveal();
   const { id } = useParams();
 
   const product = products.find(
@@ -11,14 +13,14 @@ function ProductDetails() {
   );
 
   if (!product) {
-    return <h2 className="text-center mt-20 text-xl">Product not found</h2>;
+    return <h2 ref={ref} className={`text-center mt-20 text-xl transition-all duration-700 ${isVisible ? "opacity-10 translate-y-0":"opacity-0 translate-y-10"}`}>Product not found</h2>;
   }
 
   return (
     <>
-      <Navbar />
+      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
-      <section className="px-6 md:px-20 py-14">
+      <section ref={ref} className={`px-6 md:px-20 py-14 transition-all duration-700 ${isVisible ? "opacity-10 translate-y-0":"opacity-0 translate-y-10"}`}>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
 

@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
 import useScrollReveal from "../hooks/ScrollReveal";
 
-
 function Hero() {
-  const [ref, isVisible] = useScrollReveal()
-  return (
-    
-    <section ref={ref} className={`relative w-full h-[420px] md:h-[650px] overflow-hidden transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0":"opacity-0 translate-y-10"}`}>
+  const [ref, isVisible] = useScrollReveal();
 
+  return (
+    <section
+      ref={ref}
+      className={`relative w-full h-[420px] md:h-[650px] overflow-hidden transition-all duration-700 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+    >
       <img
         src="/images/hero-men.jpg"
         alt="Men Fashion"
@@ -17,21 +20,24 @@ function Hero() {
       <div className="absolute inset-0 bg-black/10"></div>
 
       <div className="absolute top-1/2 left-6 md:left-20 -translate-y-1/2 max-w-xs md:max-w-lg">
-        
-        <h3 className="text-blue-600 text-sm md:text-lg mb-2">
-          Season Sale
-        </h3>
 
-        <h1 className="text-3xl md:text-5xl font-bold mb-3 text-black">
+        {/* Label */}
+        <span className="text-xs font-semibold tracking-widest uppercase text-indigo-500 mb-3 block">
+          Season Sale
+        </span>
+
+        {/* Heading */}
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-3">
           MEN'S FASHION
         </h1>
 
-        <p className="text-sm md:text-lg mb-6 text-gray-800">
+        {/* Subtext */}
+        <p className="text-base text-gray-500 dark:text-gray-400 mb-6">
           Min. 35–70% Off
         </p>
 
         <Link to="/men">
-          <button className="px-6 py-3 bg-blue-600 text-white rounded-md">
+          <button className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl transition-colors">
             Shop Now
           </button>
         </Link>
