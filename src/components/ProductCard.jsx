@@ -21,7 +21,7 @@ function ProductCard({ product }) {
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-[200px] object-cover"
+            className="w-full h-[300px] object-cover p-2"
           />
           {added && (
             <div className="absolute top-20 left-0 w-full bg-white/60 dark:bg-black/60 text-black dark:text-white text-sm text-center py-2 font-medium">

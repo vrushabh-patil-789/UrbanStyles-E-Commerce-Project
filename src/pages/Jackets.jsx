@@ -4,18 +4,18 @@ import ProductCard from "../components/ProductCard";
 import products from "../data/products";
 import useScrollReveal from "../hooks/ScrollReveal";
 
-function Jackets({darkMode, setDarkMode}) {
+function Jackets({ darkMode, setDarkMode }) {
   const jacketsProducts = products.filter(
     (product) => product.category === "jackets"
   );
 
-  const [ref,isVisible] = useScrollReveal();
+  const [ref, isVisible] = useScrollReveal();
 
   return (
     <>
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode}/>
+      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
-      <section ref={ref} className={`px-6 md:px-20 py-14 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0":"opacity-0 translate-y-10"}`}>
+      <section ref={ref} className={`px-6 md:px-20 py-14 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
 
         <div className="grid md:grid-cols-[260px_1fr] gap-10">
 
@@ -46,7 +46,7 @@ function Jackets({darkMode, setDarkMode}) {
                   <input type="checkbox"></input>
                   Winter Coats
                 </label>
-             
+
                 <label className="flex items-center gap-2">
                   <input type="checkbox"></input>
                   Windbreakers
@@ -61,7 +61,7 @@ function Jackets({darkMode, setDarkMode}) {
 
             {/* TOP BAR */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-              <p className="text-sm">
+              <p className="text-sm dark:text-white">
                 Showing {jacketsProducts.length} products
               </p>
 

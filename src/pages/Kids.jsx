@@ -4,18 +4,18 @@ import ProductCard from "../components/ProductCard";
 import products from "../data/products";
 import useScrollReveal from "../hooks/ScrollReveal";
 
-function Kids({darkMode, setDarkMode}) {
+function Kids({ darkMode, setDarkMode }) {
   const kidsProducts = products.filter(
     (product) => product.category === "kids"
   );
 
-  const [ref,isVisible] = useScrollReveal();
+  const [ref, isVisible] = useScrollReveal();
 
   return (
     <>
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode}/>
+      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
-      <section ref={ref} className={`px-6 md:px-20 py-14 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0":"opacity-0 translate-y-10"}`}>
+      <section ref={ref} className={`px-6 md:px-20 py-14 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
 
         <div className="grid md:grid-cols-[260px_1fr] gap-10">
 
@@ -81,7 +81,7 @@ function Kids({darkMode, setDarkMode}) {
 
             {/* TOP BAR */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-              <p className="text-sm">
+              <p className="text-sm dark:text-white">
                 Showing {kidsProducts.length} products
               </p>
 
