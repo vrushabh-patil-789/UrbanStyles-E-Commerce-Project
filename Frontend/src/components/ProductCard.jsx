@@ -1,13 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
 
 function ProductCard({ product }) {
   const { addToCart } = useCart();
+  const { isLoggedIn } = useAuth();
+  const navigate = useNavigate();
   const [added, setAdded] = useState(false);
 
   const handleAddToCart = (e) => {
     e.preventDefault();
+    if (!isLoggedIn) {
+      navigate("/login");
+      return;
+    }
     addToCart(product);
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
