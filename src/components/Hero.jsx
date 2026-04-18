@@ -7,14 +7,13 @@ function Hero() {
   return (
     <section
       ref={ref}
-      className={`relative w-full h-[420px] md:h-[650px] overflow-hidden transition-all duration-700 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
+      className={`relative w-full h-[300px] md:h-[650px] overflow-hidden transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
     >
       <img
         src="/images/hero-men.jpg"
         alt="Men Fashion"
-        className="w-full h-full object-cover object-left"
+        className="w-full h-full object-cover object-center md:object-left"
       />
 
       <div className="absolute inset-0 bg-black/10"></div>
@@ -27,12 +26,12 @@ function Hero() {
         </span>
 
         {/* Heading */}
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-3">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-3">
           MEN'S FASHION
         </h1>
 
         {/* Subtext */}
-        <p className="text-base text-gray-500 dark:text-gray-400 mb-6">
+        <p className="text-base text-black  mb-6">
           Min. 35–70% Off
         </p>
 
