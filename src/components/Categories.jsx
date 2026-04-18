@@ -76,9 +76,11 @@ function Categories() {
               Jackets
             </h4>
 
-            <button className="w-fit px-3 py-1 bg-black text-white hover:bg-gray-800 transition rounded-md">
-              Shop Now
-            </button>
+            <Link to="/jackets">
+              <button className="w-fit px-3 py-1 bg-black text-white hover:bg-gray-800 transition rounded-md">
+                Shop Now
+              </button>
+            </Link>
           </div>
         </div>
 

@@ -104,6 +104,7 @@ function Navbar({ darkMode, setDarkMode }) {
               { to: "/", label: "Home" },
               { to: "/men", label: "Men" },
               { to: "/kids", label: "Children" },
+              { to: "/jackets", label: "Jackets" },
               { to: "/cart", label: "Cart" },
             ].map(({ to, label }) => (
               <li key={to}>

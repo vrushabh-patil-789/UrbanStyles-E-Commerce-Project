@@ -7,6 +7,7 @@ import Kids from "./pages/Kids"
 import SearchResults from "./pages/SearchResults";
 import Men from "./pages/Men"
 import ProductDetails from "./pages/ProductDetails";
+import Jackets from "./pages/Jackets";
 import "./styles/main.css";
 
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="/cart" element={<Cart darkMode={darkMode} setDarkMode={setDarkMode}/>} />
         <Route path="/kids" element={<Kids darkMode={darkMode} setDarkMode={setDarkMode}/>} />
         <Route path="/men" element={<Men darkMode={darkMode} setDarkMode={setDarkMode}/>} />
+        <Route path="/jackets" element={<Jackets darkMode={darkMode} setDarkMode={setDarkMode}/>} />
         <Route path="/search" element={<SearchResults darkMode={darkMode} setDarkMode={setDarkMode}/>} />
         <Route path="/product/:id" element={<ProductDetails darkMode={darkMode} setDarkMode={setDarkMode}/>} />
 
