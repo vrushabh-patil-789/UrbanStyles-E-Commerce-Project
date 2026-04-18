@@ -31,7 +31,7 @@ function Hero() {
         </h1>
 
         {/* Subtext */}
-        <p className="text-base text-black  mb-6">
+        <p className="text-base text-black mb-6">
           Min. 35–70% Off
         </p>
 
