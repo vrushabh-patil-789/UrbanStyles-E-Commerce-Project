@@ -6,11 +6,17 @@ const {
   getOrderById,
   getAllOrders,
   updateOrderStatus,
+  createRazorpayOrder,
+  verifyPayment,
 } = require("../controllers/order.controller");
 const { protect, adminOnly } = require("../middleware/auth.middleware");
 
 // All order routes require authentication
 router.use(protect);
+
+// Razorpay routes
+router.post("/razorpay-order", createRazorpayOrder);
+router.post("/verify", verifyPayment);
 
 // POST /api/orders           - Place a new order
 router.post("/", createOrder);

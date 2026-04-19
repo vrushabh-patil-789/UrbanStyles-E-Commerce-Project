@@ -1,10 +1,111 @@
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
-import { useCart } from "../context/CartContext";   // ← import
-import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { createRazorpayOrder, verifyPayment } from "../api/orderApi";
+import { toast } from "react-hot-toast";
 
 function Cart({darkMode, setDarkMode}) {
-  const { cart, increaseQty, decreaseQty, removeItem, totalPrice } = useCart();
+  const { cart, increaseQty, decreaseQty, removeItem, totalPrice, clearCart } = useCart();
+  const { user, isLoggedIn } = useAuth();
+  const navigate = useNavigate();
+
+  const [shippingAddress, setShippingAddress] = useState(user?.address || "");
+  const [showAddressForm, setShowAddressForm] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  // Load Razorpay Script
+  const loadRazorpayScript = () => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
+      document.body.appendChild(script);
+    });
+  };
+
+  const handleCheckout = async () => {
+    if (!isLoggedIn) {
+      toast.error("Please login to proceed.");
+      return navigate("/login");
+    }
+
+    if (!showAddressForm) {
+      setShowAddressForm(true);
+      return;
+    }
+
+    if (!shippingAddress.trim()) {
+      return toast.error("Shipping address is required.");
+    }
+
+    setIsProcessing(true);
+    const res = await loadRazorpayScript();
+
+    if (!res) {
+      toast.error("Razorpay SDK failed to load. Are you online?");
+      setIsProcessing(false);
+      return;
+    }
+
+    try {
+      // 1. Create order on backend
+      const { data } = await createRazorpayOrder({
+        amount: totalPrice,
+        items: cart.map(item => ({
+          product: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity
+        })),
+        shippingAddress
+      });
+
+      // 2. Open Razorpay Modal
+      const options = {
+        key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+        amount: data.amount,
+        currency: "INR",
+        name: "UrbanStyles",
+        description: "Order Payment",
+        order_id: data.orderId,
+        handler: async (response) => {
+          try {
+            // 3. Verify payment on backend
+            const verifyRes = await verifyPayment({
+              ...response,
+              dbOrderId: data.dbOrderId
+            });
+
+            if (verifyRes.data.success) {
+              toast.success("Order placed successfully!");
+              clearCart();
+              navigate("/api/orders/my"); // Redirect to orders page
+            }
+          } catch (err) {
+            toast.error("Payment verification failed.");
+          }
+        },
+        prefill: {
+          name: user.name,
+          email: user.email,
+        },
+        theme: {
+          color: "#000000",
+        },
+      };
+
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Checkout failed");
+    } finally {
+      setIsProcessing(false);
+    }
+  };
 
   return (
     <>
@@ -98,8 +199,26 @@ function Cart({darkMode, setDarkMode}) {
                 </div>
               </div>
 
-              <button className="w-full mt-6 py-3 bg-black text-white hover:bg-gray-800 transition rounded-md">
-                Proceed to Checkout
+              {/* ADDRESS FORM */}
+              {showAddressForm && (
+                <div className="mt-6">
+                  <label className="block text-sm font-medium mb-2">Shipping Address</label>
+                  <textarea
+                    className="w-full p-2 border rounded-md dark:bg-zinc-800 dark:border-zinc-700 focus:outline-none focus:ring-1 focus:ring-black"
+                    rows="3"
+                    placeholder="Enter your full address..."
+                    value={shippingAddress}
+                    onChange={(e) => setShippingAddress(e.target.value)}
+                  />
+                </div>
+              )}
+
+              <button
+                onClick={handleCheckout}
+                disabled={isProcessing}
+                className="w-full mt-6 py-3 bg-black text-white hover:bg-gray-800 transition rounded-md disabled:bg-gray-400"
+              >
+                {isProcessing ? "Processing..." : showAddressForm ? "Pay Now" : "Proceed to Checkout"}
               </button>
             </div>
 

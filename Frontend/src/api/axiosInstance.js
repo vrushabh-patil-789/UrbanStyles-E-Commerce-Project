@@ -20,7 +20,7 @@ axiosInstance.interceptors.response.use(
     if (error.response?.status === 401 && !isCheckAuthRequest) {
       const currentPath = window.location.pathname;
       localStorage.removeItem("user");
-      
+
       // Only redirect if NOT already on login or signup to prevent refresh loops
       if (currentPath !== "/login" && currentPath !== "/signup") {
         window.location.href = "/login";

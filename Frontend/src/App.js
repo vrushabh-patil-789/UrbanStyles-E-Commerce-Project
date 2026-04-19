@@ -11,6 +11,7 @@ import ProductDetails from "./pages/ProductDetails";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Jackets from "./pages/Jackets";
+import { Toaster } from "react-hot-toast";
 import "./styles/main.css";
 
 
@@ -36,6 +37,7 @@ function App() {
     <AuthProvider>
       <CartProvider>
         <BrowserRouter>
+          <Toaster position="top-center" reverseOrder={false} />
           <Routes>
             <Route path="/" element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} />
             <Route path="/cart" element={<Cart darkMode={darkMode} setDarkMode={setDarkMode} />} />

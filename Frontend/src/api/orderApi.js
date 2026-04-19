@@ -8,3 +8,10 @@ export const getMyOrders = () => axiosInstance.get("/orders/my");
 
 // Get single order by ID
 export const getOrderById = (id) => axiosInstance.get(`/orders/${id}`);
+
+// Razorpay flows
+export const createRazorpayOrder = (orderData) =>
+  axiosInstance.post("/orders/razorpay-order", orderData);
+
+export const verifyPayment = (paymentData) =>
+  axiosInstance.post("/orders/verify", paymentData);
