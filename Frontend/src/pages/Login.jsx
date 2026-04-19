@@ -25,8 +25,14 @@ export default function Login() {
         setError("");
         try {
             const res = await loginUser(formData);
-            login(res.data.user);
-            navigate("/");
+            const user = res.data.user;
+            login(user);
+            
+            if (user.role === "admin") {
+                navigate("/admin");
+            } else {
+                navigate("/");
+            }
         } catch (err) {
             setError(err.response?.data?.message || "Login failed. Please try again.");
         } finally {

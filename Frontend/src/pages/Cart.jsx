@@ -7,7 +7,7 @@ import { useAuth } from "../context/AuthContext";
 import { createRazorpayOrder, verifyPayment } from "../api/orderApi";
 import { toast } from "react-hot-toast";
 
-function Cart({darkMode, setDarkMode}) {
+function Cart({ darkMode, setDarkMode }) {
   const { cart, increaseQty, decreaseQty, removeItem, totalPrice, clearCart } = useCart();
   const { user, isLoggedIn } = useAuth();
   const navigate = useNavigate();
@@ -58,6 +58,7 @@ function Cart({darkMode, setDarkMode}) {
         items: cart.map(item => ({
           product: item.id,
           name: item.name,
+          image: item.image,
           price: item.price,
           quantity: item.quantity
         })),
@@ -83,7 +84,7 @@ function Cart({darkMode, setDarkMode}) {
             if (verifyRes.data.success) {
               toast.success("Order placed successfully!");
               clearCart();
-              navigate("/api/orders/my"); // Redirect to orders page
+              navigate("/orders"); // Redirect to orders page
             }
           } catch (err) {
             toast.error("Payment verification failed.");
@@ -109,24 +110,38 @@ function Cart({darkMode, setDarkMode}) {
 
   return (
     <>
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode}/>
+      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
       <section className="px-6 md:px-20 py-14 dark:bg-[#0A0A0A]">
 
+        <div className="flex justify-end">
+          <Link
+            to="/orders"
+            className="px-6 py-3 border border-gray-300 dark:border-zinc-700 dark:text-white rounded-md hover:bg-gray-100 dark:hover:bg-zinc-800 transition"
+          >
+            Your Orders
+          </Link>
+        </div>
         <h2 className="text-2xl md:text-3xl font-semibold text-center mb-10 dark:text-white">
           Your Cart
         </h2>
+
+
+
 
         {/* EMPTY CART STATE */}
         {cart.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-gray-500 text-lg mb-6 dark:text-gray-300">Your cart is empty.</p>
-            <Link
-              to="/"
-              className="px-6 py-3 bg-green-500 text-white rounded-md hover:bg-gray-800 transition"
-            >
-              Continue Shopping
-            </Link>
+            <div className="flex justify-center gap-4">
+              <Link
+                to="/"
+                className="px-6 py-3 bg-green-500 text-white rounded-md hover:bg-black transition"
+              >
+                Continue Shopping
+              </Link>
+
+            </div>
           </div>
         ) : (
           <div className="grid md:grid-cols-3 gap-10">
@@ -197,6 +212,16 @@ function Cart({darkMode, setDarkMode}) {
                   <span>Total</span>
                   <span>₹{totalPrice}</span>
                 </div>
+              </div>
+
+              {/* VIEW ORDERS BUTTON */}
+              <div className="mt-4">
+                <Link
+                  to="/orders"
+                  className="block w-full text-center py-2 text-sm border border-gray-300 dark:border-zinc-700 rounded-md hover:bg-gray-50 dark:hover:bg-zinc-800 transition"
+                >
+                  View Your Orders
+                </Link>
               </div>
 
               {/* ADDRESS FORM */}

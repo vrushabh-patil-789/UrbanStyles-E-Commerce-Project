@@ -1,7 +1,7 @@
 import axiosInstance from "./axiosInstance";
 
-// Get all products (optional filters: ?category=men&search=shirt&sort=price_asc)
-export const getProducts = (params) => axiosInstance.get("/products", { params });
-
-// Get single product by ID
-export const getProductById = (id) => axiosInstance.get(`/products/${id}`);
+export const getProducts = () => axiosInstance.get("/products");
+export const getProduct = (id) => axiosInstance.get(`/products/${id}`);
+export const addProduct = (productData) => axiosInstance.post("/products", productData);
+export const updateProduct = (id, productData) => axiosInstance.put(`/products/${id}`, productData);
+export const deleteProduct = (id) => axiosInstance.delete(`/products/${id}`);

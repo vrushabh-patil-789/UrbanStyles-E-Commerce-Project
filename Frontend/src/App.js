@@ -11,10 +11,32 @@ import ProductDetails from "./pages/ProductDetails";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Jackets from "./pages/Jackets";
+import Orders from "./pages/Orders";
+import AdminDashboard from "./pages/AdminDashboard";
 import { Toaster } from "react-hot-toast";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "./context/AuthContext";
 import "./styles/main.css";
 
 
+
+// Protected Route for Admin
+const ProtectedRoute = ({ children }) => {
+  const { user, isLoggedIn } = useAuth();
+  if (!isLoggedIn || user?.role !== "admin") {
+    return <Navigate to="/" />;
+  }
+  return children;
+};
+
+// Protected Route for Customers (prevent admin from viewing shopping pages)
+const CustomerRoute = ({ children }) => {
+  const { user, isLoggedIn } = useAuth();
+  if (isLoggedIn && user?.role === "admin") {
+    return <Navigate to="/admin" />;
+  }
+  return children;
+};
 
 function App() {
 
@@ -39,15 +61,24 @@ function App() {
         <BrowserRouter>
           <Toaster position="top-center" reverseOrder={false} />
           <Routes>
-            <Route path="/" element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} />
-            <Route path="/cart" element={<Cart darkMode={darkMode} setDarkMode={setDarkMode} />} />
-            <Route path="/kids" element={<Kids darkMode={darkMode} setDarkMode={setDarkMode} />} />
-            <Route path="/men" element={<Men darkMode={darkMode} setDarkMode={setDarkMode} />} />
-            <Route path="/jackets" element={<Jackets darkMode={darkMode} setDarkMode={setDarkMode} />} />
-            <Route path="/search" element={<SearchResults darkMode={darkMode} setDarkMode={setDarkMode} />} />
-            <Route path="/product/:id" element={<ProductDetails darkMode={darkMode} setDarkMode={setDarkMode} />} />
-            <Route path="/login" element={<Login darkMode={darkMode} setDarkMode={setDarkMode} />} />
-            <Route path="/signup" element={<Signup darkMode={darkMode} setDarkMode={setDarkMode} />} />
+            <Route path="/" element={<CustomerRoute><Home darkMode={darkMode} setDarkMode={setDarkMode} /></CustomerRoute>} />
+            <Route path="/cart" element={<CustomerRoute><Cart darkMode={darkMode} setDarkMode={setDarkMode} /></CustomerRoute>} />
+            <Route path="/kids" element={<CustomerRoute><Kids darkMode={darkMode} setDarkMode={setDarkMode} /></CustomerRoute>} />
+            <Route path="/men" element={<CustomerRoute><Men darkMode={darkMode} setDarkMode={setDarkMode} /></CustomerRoute>} />
+            <Route path="/jackets" element={<CustomerRoute><Jackets darkMode={darkMode} setDarkMode={setDarkMode} /></CustomerRoute>} />
+            <Route path="/search" element={<CustomerRoute><SearchResults darkMode={darkMode} setDarkMode={setDarkMode} /></CustomerRoute>} />
+            <Route path="/product/:id" element={<CustomerRoute><ProductDetails darkMode={darkMode} setDarkMode={setDarkMode} /></CustomerRoute>} />
+            <Route path="/login" element={<CustomerRoute><Login darkMode={darkMode} setDarkMode={setDarkMode} /></CustomerRoute>} />
+            <Route path="/signup" element={<CustomerRoute><Signup darkMode={darkMode} setDarkMode={setDarkMode} /></CustomerRoute>} />
+            <Route path="/orders" element={<CustomerRoute><Orders darkMode={darkMode} setDarkMode={setDarkMode} /></CustomerRoute>} />
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute>
+                  <AdminDashboard darkMode={darkMode} setDarkMode={setDarkMode} />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </BrowserRouter>
       </CartProvider>

@@ -46,9 +46,14 @@ function Navbar({ darkMode, setDarkMode }) {
             )}
           </Link>
           {isLoggedIn ? (
-            <button onClick={handleLogout} className="text-red-500 font-medium">
-              Logout
-            </button>
+            <>
+              {user?.role === "admin" && (
+                <Link to="/admin" className="text-indigo-600 dark:text-indigo-400 font-bold">Admin</Link>
+              )}
+              <button onClick={handleLogout} className="text-red-500 font-medium">
+                Logout
+              </button>
+            </>
           ) : (
             <Link to="/login">Login</Link>
           )}
@@ -63,18 +68,7 @@ function Navbar({ darkMode, setDarkMode }) {
       </div>
 
       {/* Search */}
-      <form onSubmit={handleSearch} className="flex items-center w-full md:w-[400px] lg:w-[500px] gap-2">
-        <input
-          type="text"
-          placeholder="Search products..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-        />
-        <button type="submit" className="px-4 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-500 transition">
-          Search
-        </button>
-      </form>
+
 
       {/* Desktop Links */}
       <ul className="hidden md:flex items-center gap-8 font-medium">
@@ -96,6 +90,13 @@ function Navbar({ darkMode, setDarkMode }) {
 
         {isLoggedIn ? (
           <>
+            {user?.role === "admin" && (
+              <li>
+                <Link to="/admin" className="px-3 py-1 bg-black text-white dark:bg-white dark:text-black rounded-lg text-sm hover:scale-105 transition font-bold">
+                  Dashboard
+                </Link>
+              </li>
+            )}
             <li className="text-indigo-600 font-semibold dark:text-indigo-400">Hi, {user?.name?.split(" ")[0]}</li>
             <li>
               <button

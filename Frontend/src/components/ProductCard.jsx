@@ -23,7 +23,7 @@ function ProductCard({ product }) {
   return (
     <div className="rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 flex flex-col">
 
-      <Link to={`/product/${product.id}`} className="block flex-1">
+      <Link to={`/product/${product.id || product._id}`} className="block flex-1">
         <div className="relative">
           <img
             src={product.image}

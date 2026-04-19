@@ -30,7 +30,13 @@ const createRazorpayOrder = async (req, res) => {
     // Initial order creation in DB (pending)
     const order = await Order.create({
       user: req.user._id,
-      items,
+      items: items.map(item => ({
+        product: item.product,
+        name: item.name,
+        image: item.image,
+        price: item.price,
+        quantity: item.quantity
+      })),
       totalAmount: amount,
       shippingAddress,
       razorpayOrderId: razorpayOrder.id,
@@ -102,7 +108,13 @@ const createOrder = async (req, res) => {
 
     const order = await Order.create({
       user: req.user._id,
-      items,
+      items: items.map(item => ({
+        product: item.product,
+        name: item.name,
+        image: item.image,
+        price: item.price,
+        quantity: item.quantity
+      })),
       totalAmount,
       shippingAddress,
     });

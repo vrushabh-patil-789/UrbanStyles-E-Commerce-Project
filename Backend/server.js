@@ -24,6 +24,7 @@ app.use(cookieParser());
 const authRoutes = require("./routes/auth.routes");
 const productRoutes = require("./routes/product.routes");
 const orderRoutes = require("./routes/order.routes");
+const { seedAdmin, seedProducts } = require("./seed");
 
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
@@ -41,6 +42,8 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("✅ MongoDB connected");
+    seedAdmin();
+    seedProducts();
     app.listen(PORT, () => {
       console.log(`🚀 Server running on http://localhost:${PORT}`);
     });

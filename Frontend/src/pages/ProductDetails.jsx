@@ -1,11 +1,11 @@
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import products from "../data/products";
+import { getProduct } from "../api/productApi";
 import useScrollReveal from "../hooks/ScrollReveal";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function ProductDetails({ darkMode, setDarkMode }) {
   const [ref, isVisible] = useScrollReveal();
@@ -13,20 +13,43 @@ function ProductDetails({ darkMode, setDarkMode }) {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const { isLoggedIn } = useAuth();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [added, setAdded] = useState(false);
 
-  const product = products.find(
-    (item) => item.id === parseInt(id)
-  );
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const { data } = await getProduct(id);
+        setProduct(data);
+      } catch (error) {
+        console.error("Product fetch failed");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProduct();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center dark:bg-[#0A0A0A] dark:text-white">
+        <p className="text-xl animate-pulse">Loading product...</p>
+      </div>
+    );
+  }
 
   if (!product) {
     return (
-      <h2 
-        ref={ref} 
-        className={`text-center mt-20 text-xl transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-      >
-        Product not found
-      </h2>
+      <div className="min-h-screen flex flex-col dark:bg-[#0A0A0A]">
+        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+        <h2 
+          ref={ref} 
+          className={`text-center mt-20 text-xl transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"} dark:text-white`}
+        >
+          Product not found
+        </h2>
+      </div>
     );
   }
 

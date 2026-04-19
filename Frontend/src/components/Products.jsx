@@ -1,11 +1,27 @@
-import { useState } from "react";
-import products from "../data/products";
+import { useState, useEffect } from "react";
+import { getProducts } from "../api/productApi";
 import ProductCard from "./ProductCard";
 import useScrollReveal from "../hooks/ScrollReveal";
 
 function Products() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [ref, isVisible] = useScrollReveal();
   const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const { data } = await getProducts();
+        setProducts(data);
+      } catch (error) {
+        console.error("Failed to fetch products");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   const visibleCards = 4;
   const cardWidth = 260;
@@ -31,11 +47,15 @@ function Products() {
 
       {/* MOBILE VERSION */}
       <div className="md:hidden overflow-x-auto flex gap-4 snap-x snap-mandatory pb-4">
-        {products.map((product) => (
-          <div key={product.id} className="min-w-[75%] snap-start">
-            <ProductCard product={product} />
-          </div>
-        ))}
+        {loading ? (
+          <p className="text-center w-full py-10">Loading products...</p>
+        ) : (
+          products.map((product) => (
+            <div key={product.id || product._id} className="min-w-[75%] snap-start">
+              <ProductCard product={product} />
+            </div>
+          ))
+        )}
       </div>
 
       {/* DESKTOP SLIDER */}
@@ -52,11 +72,15 @@ function Products() {
             className="flex gap-5 transition-transform duration-300"
             style={{ transform: `translateX(-${index * cardWidth}px)` }}
           >
-            {products.map((product) => (
-              <div key={product.id} className="min-w-[240px]">
-                <ProductCard product={product} />
-              </div>
-            ))}
+            {loading ? (
+              <p className="w-full text-center py-10">Loading...</p>
+            ) : (
+              products.map((product) => (
+                <div key={product.id || product._id} className="min-w-[240px]">
+                  <ProductCard product={product} />
+                </div>
+              ))
+            )}
           </div>
         </div>
 
