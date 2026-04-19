@@ -11,11 +11,15 @@ const generateToken = (id) => {
 // @access Public
 const signup = async (req, res) => {
   try {
-    const { name, username, email, password, address } = req.body;
+    let { name, username, email, password, address } = req.body;
 
     if (!name || !username || !email || !password) {
       return res.status(400).json({ message: "All fields are required." });
     }
+
+    // Enforce lowercase for unique fields
+    username = username.toLowerCase();
+    email = email.toLowerCase();
 
     const existingUser = await User.findOne({
       $or: [{ email }, { username }],
@@ -49,6 +53,7 @@ const signup = async (req, res) => {
       },
     });
   } catch (error) {
+    console.error("Signup error details:", error);
     res.status(500).json({ message: "Server error.", error: error.message });
   }
 };
@@ -92,6 +97,7 @@ const login = async (req, res) => {
       },
     });
   } catch (error) {
+    console.error("Login error details:", error);
     res.status(500).json({ message: "Server error.", error: error.message });
   }
 };
